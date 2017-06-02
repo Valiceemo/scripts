@@ -24,28 +24,35 @@ if [ -d "${BACKUP_FOLDER}" ]
 then
   if [ ! -d "${BACKUP_LOCATION}" ]
   then
-  echo log e "Homeassistant folder not found, is it correct?"
-  echo $TIMESTAMP "Home Assistat backup fail - directory" $BACKUP_LOCATION "not found" | sudo tee --append $LOGFILE
+    echo "Homeassistant folder not found, is it correct?"
+    echo $TIMESTAMP "Home Assistat backup fail - directory" $BACKUP_LOCATION "not found" | sudo tee --append $LOGFILE
+    exit 0
   else
   if [ "${INCLUDE_DB}" = true ]
   then
     echo "Creating backup with database"
     zip -9 -q -r ${BACKUP_FILE} . -x"components/*" -x"deps/*" -x"home-assistant.log"
   else
-  echo "Creating backup"
-  zip -9 -q -r ${BACKUP_FILE} . -x"components/*" -x"deps/*" -x"home-assistant.db" -x"home-assistant_v2.db" -x"home-assistant.log"
-  echo "Backup complete: ${BACKUP_FILE}"
+    echo "Creating backup"
+    zip -9 -q -r ${BACKUP_FILE} . -x"components/*" -x"deps/*" -x"home-assistant.db" -x"home-assistant_v2.db" -x"home-assistant.log"
+    echo "Backup complete: ${BACKUP_FILE}"
+  fi
+fi 
+
 
 if [ "${DAYSTOKEEP}" = 0 ]
 then
-echo "Keeping all files no prunning set"
+  echo "Keeping all files no prunning set"
 else
-echo "Deleting backups older then ${DAYSTOKEEP} day(s)"
-OLDFILES=$(find ${BACKUP_FOLDER} -mindepth 1 -mtime +${DAYSTOKEEP} -delete -print)
+  echo "Deleting backups older then ${DAYSTOKEEP} day(s)"
+  OLDFILES=$(find ${BACKUP_FOLDER} -mindepth 1 -mtime +${DAYSTOKEEP} -delete -print)
+fi
 
 if [ ! -z "${OLDFILES}" ]
 then
-echo "Found the following old files:"
-echo "${OLDFILES}"
+  echo "Found the following old files:"
+  echo "${OLDFILES}"
 else
-echo "Backup folder not found, is your USB drive mounted?"
+  echo "Backup folder not found, is your USB drive mounted?"
+fi
+exit 0

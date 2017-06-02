@@ -11,7 +11,7 @@ auth = {
   'password':"ri31scan"
 }
 pin = 18 # The pin ID, edit here to change it
-maxTMP = 45 # The maximum temperature in Celsius after which we trigger the fan
+maxTMP = 47 # The maximum temperature in Celsius after which we trigger the fan
 Led = 21
 def setup():
     GPIO.setmode(GPIO.BCM)
