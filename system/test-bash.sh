@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Author: Richard Wallace aka Valiceemo
+# Simple backup script to zip and move any folder to any location
+# Edit file paths and backup locations as desired, as well as all comments
+# can be run from CL, or via cron
+
+## Set variables and file paths
 FOLDER=/home/pi/scripts/system/source-vars
 HASS_LOCATION=/home/homeassistant/.homeassistants
 BACKUP_FOLDER=/mnt/wd_ext_hdd_2/hass_backup/
