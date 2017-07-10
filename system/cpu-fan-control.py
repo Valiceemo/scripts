@@ -22,7 +22,7 @@ def setup():
 def getCPUtemperature():
     res = os.popen('vcgencmd measure_temp').readline()
     temp =(res.replace("temp=","").replace("'C\n",""))
-    publish.single("pi/cpu/temp", temp, hostname="192.168.0.33", port=1883, auth=auth)
+    publish.single("pi/cpu/temp", temp, hostname="192.168.0.50", port=1883, auth=auth)
     print("temp is {0}".format(temp)) #Uncomment here for testing
     return temp
 def fanON():
@@ -35,11 +35,11 @@ def getTEMP():
     CPU_temp = float(getCPUtemperature())
     if CPU_temp>maxTMP:
         fanON()
-        publish.single("pi/cpu/fan", "on", hostname="192.168.0.33", port=1883, auth=auth)
+        publish.single("pi/cpu/fan", "on", hostname="192.168.0.50", port=1883, auth=auth)
         GPIO.output(Led, True)
     else:
         fanOFF()
-        publish.single("pi/cpu/fan", "off", hostname="192.168.0.33", port=1883, auth=auth)
+        publish.single("pi/cpu/fan", "off", hostname="192.168.0.50", port=1883, auth=auth)
         GPIO.output(Led, False)
     sleep(60)
     return()
@@ -52,5 +52,5 @@ try:
         getTEMP()
 
 except KeyboardInterrupt: # trap a CTRL+C keyboard interrupt
-    publish.single("pi/cpu/fan", "off", hostname="192.168.0.33", port=1883, auth=auth)
+    publish.single("pi/cpu/fan", "off", hostname="192.168.0.50", port=1883, auth=auth)
     GPIO.cleanup() # resets all GPIO ports used by this program
