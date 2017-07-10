@@ -16,7 +16,7 @@ while True:
      res = os.popen('vcgencmd measure_temp').readline()
      return(res.replace("temp=","").replace("'C\n",""))
   temp=int(float(getCPUtemperature()))
-  publish.single("pi/cpu/temp", temp, hostname="192.168.0.33", port=1883, auth=auth)
+  publish.single("pi/cpu/temp", temp, hostname="192.168.0.50", port=1883, auth=auth)
 
   time.sleep(10)
 
