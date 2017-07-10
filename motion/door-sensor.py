@@ -26,7 +26,7 @@ try:
 			print("switch is closed")
 			status = "closed"
 			sleep(0.1)
-		publish.single("pi/sensors/door-test", status, hostname="192.168.0.33", port=1883, auth=auth)
+		publish.single("pi/sensors/door-test", status, hostname="192.168.0.50", port=1883, auth=auth)
 		sleep(0.5)
 
 finally:
