@@ -25,7 +25,7 @@ while True:
         time.sleep(2)
         continue
     print(temperature, humidity)
-    publish.single("lounge/temp", temperature, hostname="192.168.0.33", port=1883, auth=auth)
-    publish.single("lounge/humidity", humidity, hostname="192.168.0.33", port=1883, auth=auth)
+    publish.single("lounge/temp", temperature, hostname="192.168.0.50", port=1883, auth=auth)
+    publish.single("lounge/humidity", humidity, hostname="192.168.0.50", port=1883, auth=auth)
 
     time.sleep(read_freq)
