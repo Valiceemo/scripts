@@ -35,6 +35,8 @@ while True:
   
   topic = "pi/cpu/temp"
   payload = { 'datetimedatacollected': currenttime, 'cpuusage': cpupercent, 'boottime': boottime, 'cputemp': cputemp, 'disktotal': disktotal }
+  payload_json = json.dumps(payload)
+  print (payload_json)
   
   publish.single(topic, payload_json, hostname="192.168.0.50", port=1883, auth=auth)
 
