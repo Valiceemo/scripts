@@ -2,10 +2,9 @@
 import Adafruit_DHT
 import os
 import sys
-import time
+import time, datetime, strftime
+import json
 import paho.mqtt.publish as publish
-#import paho as publish
-#import paho.mqtt.client as mqtt
 
 #frequency of sensor read in seconds
 read_freq = 1800
@@ -17,6 +16,7 @@ auth = {
   'username':"richard",
   'password':"ri31scan"
 }
+
 while True:
     #read values
     humidity, temperature = Adafruit_DHT.read(sensor, pin)
@@ -24,8 +24,12 @@ while True:
     if humidity is None or temperature is None:
         time.sleep(2)
         continue
-    print(temperature, humidity)
-    publish.single("lounge/temp", temperature, hostname="192.168.0.50", port=1883, auth=auth)
-    publish.single("lounge/humidity", humidity, hostname="192.168.0.50", port=1883, auth=auth)
-
+    
+    currenttime = strftime("%Y-%m-%d %H:%M:%S")
+    topic = "media-centre/conditions"
+    payload = { 'datetimedatacollected': currenttime, 'media-centre temp': temperature, 'media-centre humidity': humidity, }
+    payload_json = json.dumps(payload)
+    print (payload_json)
+    publish.single(topic, payload, hostname="192.168.0.50", port=1883, auth=auth)
+    
     time.sleep(read_freq)
