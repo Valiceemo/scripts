@@ -7,8 +7,8 @@ import sys
 import RPi.GPIO as GPIO
 import paho.mqtt.publish as publish
 auth = {
-  'username':"richard",
-  'password':"ri31scan"
+  'username':"USERNAME",   
+  'password':"PASSWORD"
 }
 pin = 18 # The pin ID, edit here to change it
 maxTMP = 47 # The maximum temperature in Celsius after which we trigger the fan
