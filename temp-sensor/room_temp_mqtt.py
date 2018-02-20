@@ -13,8 +13,8 @@ read_freq = 1800
 sensor = Adafruit_DHT.DHT11
 pin = 4
 auth = {
-  'username':"richard",
-  'password':"ri31scan"
+  'username':"USERNAME",
+  'password':"PASSWORD"
 }
 
 while True:
