@@ -10,8 +10,8 @@ GPIO.setup(sensorPin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(ledPin,GPIO.OUT)
 
 auth = {
-  'username':"richard",
-  'password':"ri31scan"
+  'username':"USERNAME",
+  'password':"PASSWORD"
 }
 
 try:
